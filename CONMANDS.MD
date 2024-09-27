@@ -44,3 +44,8 @@ git push -u origin main
 - git commit -m "your commit message"
 - git push origin main
 - git branch -M main
+
+# fire base installation
+
+- npm install firebase
+- npm install -g firebase-tools
