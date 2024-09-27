@@ -2,10 +2,12 @@ import React, { useRef, useState } from "react";
 import Header from "./Header";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../utils/firebase";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
-  const [errorMessage1, setErrorMessage] = useState(null);
-  // const name = useRef(null);
+  const navigate = useNavigate();
+  const [setErrorMessage] = useState(null);
+  const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
   // const Mobile = useRef(null);
@@ -25,6 +27,9 @@ const SignUp = () => {
         setErrorMessage(errorCode + "-" + errorMessage);
       });
   };
+  const handleGoBackToSignIn = () => {
+    navigate("/login");
+  };
   return (
     <div className="bg-black">
       <Header />
@@ -33,12 +38,12 @@ const SignUp = () => {
         className=" absolute w-3/12 my-56 mx-auto right-0 left-0  bg-gradient-to-l from-black"
       >
         <h1 className="text-2xl mb-5 text-center font-bold">Register</h1>
-        {/* <input
+        <input
           ref={name}
           type="text"
           placeholder="Full Name"
           className="p-2 m-2 bg-gray-300 w-full"
-        ></input> */}
+        ></input>
 
         <input
           ref={email}
@@ -69,6 +74,17 @@ const SignUp = () => {
         >
           Sign Up
         </button>
+        <div className="flex p-2">
+          <p className="text-white text-center m-2">
+            {"Already have an account? "}
+          </p>
+          <p
+            className=" text-red-500 cursor-pointer hover:text-amber-600 m-2"
+            onClick={handleGoBackToSignIn}
+          >
+            {"Sign In"}
+          </p>
+        </div>
       </form>
       <img
         src="https://images8.alphacoders.com/118/1185382.jpg"

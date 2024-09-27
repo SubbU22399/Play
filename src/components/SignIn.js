@@ -1,21 +1,21 @@
 import React, { useRef, useState } from "react";
 import Header from "./Header";
 import { validateData } from "../utils/validate";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
-
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
 const SignIn = () => {
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [errorMessage, setErrorMessage] = useState(null);
   const email = useRef(null);
   const password = useRef(null);
   const handleButtonclick = () => {
     console.log(email.current.value);
     console.log(password.current.value);
-    const message = validateData(email.current.value, password.current.value);
-    console.log(message);
-    setErrorMessage(message);
+    validateData(email.current.value, password.current.value);
     //Sign IN Login and auth
     signInWithEmailAndPassword(
       auth,
@@ -26,12 +26,36 @@ const SignIn = () => {
         // Signed in
         const user = userCredential.user;
         console.log(user);
+        updateProfile(auth.currentUser, {
+          displayName: user,
+          photoURL: "https://example.com/jane-q-user/profile.jpg",
+        })
+          .then(() => {
+            dispatch(
+              addUser({
+                uid: auth.uid,
+                email: auth.email,
+                displayName: auth.displayName,
+              })
+            );
+
+            // Profile updated!
+            // ...
+          })
+          .catch((error) => {
+            // An error occurred
+            // ...
+          });
+        navigate("/home");
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         setErrorMessage(errorCode + "-" + errorMessage);
       });
+  };
+  const handleRegister = () => {
+    navigate("/register");
   };
   return (
     <div className="bg-black">
@@ -69,10 +93,11 @@ const SignIn = () => {
         >
           forgot password
         </button>
-        <p className="text-sm text-center cursor-pointer">
-          New to Play? Sign-up now{" "}
-        </p>
-        <button className="bg-gray-600 hover:bg-slate-800 font-bold p-2 m-2 w-full rounded-xl">
+        <p className="text-sm text-center">New to Play? Sign-up now</p>
+        <button
+          className="bg-gray-600 hover:bg-slate-800 font-bold p-2 m-2 w-full rounded-xl"
+          onClick={handleRegister}
+        >
           Register
         </button>
       </form>
