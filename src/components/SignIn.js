@@ -1,21 +1,19 @@
 import React, { useRef, useState } from "react";
-import Header from "./Header";
 import { validateData } from "../utils/validate";
-import { signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { addUser } from "../utils/userSlice";
+import Header from "./Header";
 const SignIn = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [errorMessage, setErrorMessage] = useState(null);
   const email = useRef(null);
   const password = useRef(null);
   const handleButtonclick = () => {
     console.log(email.current.value);
     console.log(password.current.value);
-    validateData(email.current.value, password.current.value);
+    const message = validateData(email.current.value, password.current.value);
+    setErrorMessage(message);
     //Sign IN Login and auth
     signInWithEmailAndPassword(
       auth,
@@ -24,28 +22,6 @@ const SignIn = () => {
     )
       .then((userCredential) => {
         // Signed in
-        const user = userCredential.user;
-        console.log(user);
-        updateProfile(auth.currentUser, {
-          displayName: user,
-          photoURL: "https://example.com/jane-q-user/profile.jpg",
-        })
-          .then(() => {
-            dispatch(
-              addUser({
-                uid: auth.uid,
-                email: auth.email,
-                displayName: auth.displayName,
-              })
-            );
-
-            // Profile updated!
-            // ...
-          })
-          .catch((error) => {
-            // An error occurred
-            // ...
-          });
         navigate("/home");
       })
       .catch((error) => {

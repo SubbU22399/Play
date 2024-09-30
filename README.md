@@ -74,3 +74,30 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 git remote add origin https://github.com/SubbU22399/Play.git
 git branch -M main
 git push -u origin main
+
+## regular expression ofr validating the email
+
+let email = "test@gmail.com";
+let regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+if(regex.test(email)){
+console.log("valid email");
+}else{
+console.log("invalid email");
+}
+
+## regular expression for validating the password
+
+let password = "test123";
+let regex = /^(?=._[a-z])(?=._[A-Z])(?=._\d)(?=._[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+if(regex.test(password)){
+console.log("valid password");
+}else{
+console.log("invalid password");
+}
+
+## autoplay in youtube Embad iframe
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO
+autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer;
+autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+allowfullscreen></iframe>

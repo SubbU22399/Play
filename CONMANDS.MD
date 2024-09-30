@@ -49,3 +49,8 @@ git push -u origin main
 
 - npm install firebase
 - npm install -g firebase-tools
+
+# redux setup
+
+- npm i -D @redux/toolkit
+- npm i react-redux

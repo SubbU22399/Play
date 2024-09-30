@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import userEvent from "@testing-library/user-event";
 
 const userSlice = createSlice({
   name: "user",
