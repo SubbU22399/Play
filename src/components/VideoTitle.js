@@ -2,7 +2,7 @@ import React from "react";
 
 const VideoTitle = ({ title, overview }) => {
   return (
-    <div className="absolute pt-[35%] px-20 bg-gradient-to-tr from-black w-screen aspect-video">
+    <div className="absolute pt-[30%] px-20 bg-gradient-to-tr from-black w-screen aspect-video">
       <h2 className="text-bold text-4xl text-pretty text-white">{title}</h2>
       <p className="text-gray-500 text-sm w-1/4">{overview}</p>
       <div className=" m-2 p-2">

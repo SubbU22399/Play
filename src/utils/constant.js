@@ -14,4 +14,4 @@ export const Api_Options = {
 export const Movie_bg_Image =
   "https://media.themoviedb.org/t/p/w600_and_h900_bestv2/";
 
-export const YOUTUBE_URL = "https://www.youtube.com/watch?v=";
+export const CDN_URL = "https://image.tmdb.org/t/p/w500";
