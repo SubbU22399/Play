@@ -15,3 +15,6 @@ export const Movie_bg_Image =
   "https://media.themoviedb.org/t/p/w600_and_h900_bestv2/";
 
 export const CDN_URL = "https://image.tmdb.org/t/p/w500";
+
+export const BackGroundImage =
+  "https://images8.alphacoders.com/118/1185382.jpg";

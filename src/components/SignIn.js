@@ -4,6 +4,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import Header from "./Header";
+import { BackGroundImage } from "../utils/constant";
 const SignIn = () => {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState(null);
@@ -55,7 +56,7 @@ const SignIn = () => {
           placeholder="Password"
           className="p-2 m-2 w-full bg-gray-300 text-black"
         />
-        <p className="text-red-600 text-xs text-center "> {errorMessage}</p>
+        {/* <p className="text-red-600 text-xs text-center "> {errorMessage}</p> */}
         <button
           className="bg-red-700 hover:bg-blue-700  font-bold py-
         2 px-4 m-2 rounded w-full "
@@ -77,10 +78,7 @@ const SignIn = () => {
           Register
         </button>
       </form>
-      <img
-        src="https://images8.alphacoders.com/118/1185382.jpg"
-        alt="Background"
-      />
+      <img src={BackGroundImage} alt="Background" />
     </div>
   );
 };

@@ -8,15 +8,18 @@ import GPTSearch from "./GPTSearch";
 import { useSelector } from "react-redux";
 
 const Home = () => {
-  const toggleGptSearchView = useSelector((store) => store.gpt.loading);
+  const GptSearchView = useSelector((store) => store.gpt.loading);
+  console.log(GptSearchView);
   useNowPlayingMovies();
   usePopularMovies();
   useTopRatedMovies();
   return (
     <div>
       <Header />
-      {toggleGptSearchView ? (
-        <GPTSearch />
+      {GptSearchView ? (
+        <>
+          <GPTSearch />
+        </>
       ) : (
         <>
           <MainContainer />

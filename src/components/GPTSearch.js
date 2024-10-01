@@ -1,9 +1,16 @@
 import React from "react";
+import GptSearchBar from "./GptSearchBar";
+import { BackGroundImage } from "../utils/constant";
 
 const GPTSearch = () => {
   return (
     <div>
-      <h1>Search with GPT</h1>
+      <img
+        src={BackGroundImage}
+        alt="BackGroundImage"
+        className="absolute blur"
+      ></img>
+      <GptSearchBar />
     </div>
   );
 };
