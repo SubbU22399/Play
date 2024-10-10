@@ -1,7 +1,7 @@
 import React from "react";
 import { CDN_URL } from "../utils/constant";
 
-const MovieCard = ({ poster_path, name }) => {
+const MovieCard = ({ poster_path, name, id }) => {
   return (
     <div className="w-28 pr-1 text-white">
       <img
@@ -13,5 +13,4 @@ const MovieCard = ({ poster_path, name }) => {
     </div>
   );
 };
-
 export default MovieCard;

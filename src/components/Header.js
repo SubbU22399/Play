@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
 import { Logo_URL, Profile_Logo } from "../utils/constant";
 import { toggleGptSearchView } from "../utils/gptSlice";
@@ -10,6 +10,7 @@ import { toggleGptSearchView } from "../utils/gptSlice";
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const SearchView = useSelector((store) => store.gpt.loading);
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -49,7 +50,7 @@ const Header = () => {
             className="text-black text-bold cursor-pointer bg-slate-300 rounded-lg hover:bg-lime-600 m-2"
             onClick={HandleGptSearchClick}
           >
-            GPTSearch
+            {SearchView ? "HomePage" : "GPTSearch"}
           </button>
           <p className="text-red-700 text-lg font-bold justify-between m-3">
             {auth.currentUser.displayName}
