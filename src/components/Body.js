@@ -4,6 +4,7 @@ import SignIn from "./SignIn";
 import { createBrowserRouter } from "react-router-dom";
 import { RouterProvider } from "react-router-dom";
 import SignUp from "./SignUp";
+import Playtailer from "./Playtailer";
 
 const Body = () => {
   const appRouter = createBrowserRouter([
@@ -18,6 +19,10 @@ const Body = () => {
     {
       path: "/home",
       element: <Home />,
+    },
+    {
+      path: "/videotrailer",
+      element: <Playtailer />,
     },
   ]);
 
